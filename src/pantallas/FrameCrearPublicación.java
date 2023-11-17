@@ -4,8 +4,19 @@
  */
 package pantallas;
 
-
-import javax.swing.border.EmptyBorder;
+import Entidades.Mascota;
+import java.awt.Image;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.JTextComponent;
 
 
@@ -15,19 +26,21 @@ import javax.swing.text.JTextComponent;
  */
 public class FrameCrearPublicación extends javax.swing.JFrame {
 
+    private FramePublicaciones padre;
+    private byte[] imagenBytes;
     /**
      * Creates new form FrameCrearPublicación
      */
     public FrameCrearPublicación() {
         initComponents();
-        this.setLocationRelativeTo(null);
+    }
+    public FrameCrearPublicación(FramePublicaciones padre) {
+        initComponents();
         
         agregarTextPrompt("Nombre",txtNombre);
         agregarTextPrompt("Raza",txtRaza);
-        agregarTextPrompt("Estado",txtEstado);
-        agregarTextPrompt("Descripción",txtDescripción);
-        
-        
+        agregarTextPrompt("Descripción",txtDescripcion);
+       
     }
 
     /**
@@ -39,159 +52,184 @@ public class FrameCrearPublicación extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel3 = new javax.swing.JPanel();
-        btnCancelar = new javax.swing.JButton();
-        jLabel14 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtDescripción = new javax.swing.JTextArea();
-        txtNombre = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        txtDescripcion = new javax.swing.JTextField();
         txtRaza = new javax.swing.JTextField();
-        txtEstado = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
+        btnPost = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnBack = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        btnChangeImage = new javax.swing.JLabel();
+        lblPetPhoto = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFrameCrearPublicación/Group 3 (1).png"))); // NOI18N
-        btnCancelar.setBorder(null);
-        btnCancelar.setBorderPainted(false);
-        btnCancelar.setContentAreaFilled(false);
-        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
-            }
-        });
-
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFrameCrearPublicación/Ellipse 2 (1).png"))); // NOI18N
-
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFrameCrearPublicación/Rectangle 47.png"))); // NOI18N
-        jButton4.setBorder(null);
-        jButton4.setBorderPainted(false);
-        jButton4.setContentAreaFilled(false);
-
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jScrollPane1.setViewportBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 235, 235)));
-
-        txtDescripción.setBackground(new java.awt.Color(235, 235, 235));
-        txtDescripción.setColumns(20);
-        txtDescripción.setRows(5);
-        txtDescripción.setBorder(null);
-        txtDescripción.setDisabledTextColor(new java.awt.Color(235, 235, 235));
-        jScrollPane1.setViewportView(txtDescripción);
-
-        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 183, 340, 100));
-
-        txtNombre.setBackground(new java.awt.Color(235, 235, 235));
-        txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        txtNombre.setBorder(null);
-        jPanel4.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 330, -1));
+        txtDescripcion.setBackground(new java.awt.Color(235, 235, 235));
+        txtDescripcion.setBorder(null);
+        jPanel1.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 375, 330, 30));
 
         txtRaza.setBackground(new java.awt.Color(235, 235, 235));
-        txtRaza.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtRaza.setBorder(null);
-        jPanel4.add(txtRaza, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 330, -1));
+        jPanel1.add(txtRaza, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 324, 330, 30));
 
-        txtEstado.setBackground(new java.awt.Color(235, 235, 235));
-        txtEstado.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        txtEstado.setBorder(null);
-        txtEstado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEstadoActionPerformed(evt);
+        txtNombre.setBackground(new java.awt.Color(235, 235, 235));
+        txtNombre.setBorder(null);
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 274, 330, 30));
+
+        btnPost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFrameCrearPublicación/btnPost.png"))); // NOI18N
+        btnPost.setText("Publicar");
+        btnPost.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnPost.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPostMouseClicked(evt);
             }
         });
-        jPanel4.add(txtEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 330, -1));
+        jPanel1.add(btnPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 550, -1, -1));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFrameCrearPublicación/Rectangle 40.png"))); // NOI18N
-        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFrameCrearPublicación/TextField.png"))); // NOI18N
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 320, -1, -1));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFrameCrearPublicación/Rectangle 40.png"))); // NOI18N
-        jPanel4.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFrameCrearPublicación/btnBack.png"))); // NOI18N
+        btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBackMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 26, -1, -1));
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFrameCrearPublicación/Rectangle 40.png"))); // NOI18N
-        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFrameCrearPublicación/TextField2.png"))); // NOI18N
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 370, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFrameCrearPublicación/Rectangle 43 (1).png"))); // NOI18N
-        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFrameCrearPublicación/TextField.png"))); // NOI18N
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 270, -1, -1));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFrameCrearPublicación/Group 12 (1).png"))); // NOI18N
-        jButton1.setBorder(null);
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFrameCrearPublicación/Group 12 (1).png"))); // NOI18N
-        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFrameCrearPublicación/Group 22.png"))); // NOI18N
-        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, -1, 40));
+        btnChangeImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFrameCrearPublicación/CameraPhoto.png"))); // NOI18N
+        btnChangeImage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnChangeImageMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnChangeImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(287, 200, -1, -1));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(btnCancelar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel14)
-                        .addGap(27, 27, 27)
-                        .addComponent(jButton4)
-                        .addGap(77, 77, 77))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33))))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(btnCancelar)
-                .addGap(19, 19, 19)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel14)
-                    .addComponent(jButton4))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
-                .addGap(22, 22, 22))
-        );
+        lblPetPhoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFrameCrearPublicación/PetPhoto.png"))); // NOI18N
+        jPanel1.add(lblPetPhoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 75, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFrameCrearPublicación/FrameCrearPublicación.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 466, 640));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-     private void agregarTextPrompt(String placeholder, JTextComponent component) {
-        TextPrompt prompt = new TextPrompt(placeholder, component);
+    private void btnPostMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPostMouseClicked
+        String nombre = txtNombre.getText();
+        String raza = txtRaza.getText();
+        String descripcion = txtDescripcion.getText();
+        if (nombre.isEmpty() || raza.isEmpty() || descripcion.isEmpty()) {
+            JOptionPane.showMessageDialog(this, 
+                    "Complete todo los casilleros");
+            return; // No continuamos si los campos están vacíos
+        }
+        // Obtener los bytes de la imagen
+        byte[] imagenBytes = this.imagenBytes;
+        Mascota mascota = getMascota();
+        BackPost(mascota);
+    }//GEN-LAST:event_btnPostMouseClicked
+
+    private Mascota getMascota() throws NumberFormatException {
+        String nombre = txtNombre.getText();
+        String raza = txtRaza.getText();
+        String descripcion = txtDescripcion.getText();
         
+        Mascota mascota =
+                new Mascota(nombre, raza, descripcion, imagenBytes);
+        return mascota;
     }
-     
-    private void txtEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEstadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEstadoActionPerformed
-
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+    
+    private void BackPost(Mascota mascota) {
+        FramePublicaciones pantalla = new FramePublicaciones(this, mascota);
+        pantalla.setLocationRelativeTo(this);
+        pantalla.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_btnCancelarActionPerformed
+    }
+    
+    private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
+        BackPost(mascota);
+    }//GEN-LAST:event_btnBackMouseClicked
 
+    private void btnChangeImageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChangeImageMouseClicked
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home") + "\\Documents"));
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de imagen", "jpg", "jpeg", "png", "gif");
+        fileChooser.setFileFilter(filter);
+
+        int result = fileChooser.showOpenDialog(this);
+
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+
+            try {
+                // Cargar la imagen desde el archivo y mostrarla en el JLabel
+                ImageIcon originalIcon = new ImageIcon(selectedFile.getAbsolutePath());
+                Image originalImage = originalIcon.getImage();
+
+                // Escalar la imagen al tamaño deseado (168 x 168) manteniendo la relación de aspecto
+                Image scaledImage = originalImage.getScaledInstance(168, 168, Image.SCALE_SMOOTH);
+
+                // Crear un nuevo ImageIcon con la imagen escalada
+                ImageIcon scaledIcon = new ImageIcon(scaledImage);
+
+                // Asignar el nuevo ImageIcon al JLabel
+                lblPetPhoto.setIcon(scaledIcon);
+
+                // Leer la imagen como un arreglo de bytes y asignarla a imagenBytes
+                FileInputStream inputStream = new FileInputStream(selectedFile);
+                imagenBytes = new byte[(int) selectedFile.length()];
+                inputStream.read(imagenBytes);
+                inputStream.close();
+
+                JOptionPane.showMessageDialog(this, "Imagen cargada exitosamente. Puedes publicarla cuando lo desees.");
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(this, "Error al cargar la imagen: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnChangeImageMouseClicked
+ 
+    private static void guardarImagenEnBD(byte[] imagenBytes) throws SQLException {
+        String url = "xd";
+        String usuario = "tu_usuario";
+        String contraseña = "tu_contraseña";
+
+        try (Connection conexion = DriverManager.getConnection(url, usuario, contraseña)) {
+            String sql = "INSERT INTO tabla_imagenes (nombre, imagen) VALUES (?, ?)";
+            try (PreparedStatement pstmt = conexion.prepareStatement(sql)) {
+                pstmt.setString(1, "nombre_imagen");  // Puedes cambiar esto según tus necesidades
+                pstmt.setBytes(2, imagenBytes);
+                pstmt.executeUpdate();
+            }
+        }
+    }
+    private void agregarTextPrompt(String placeholder, JTextComponent component) {
+        TextPrompt prompt = new TextPrompt(placeholder, component); 
+    }
+    
+    
+     
     /**
      * @param args the command line arguments
      */
@@ -228,19 +266,16 @@ public class FrameCrearPublicación extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel btnBack;
+    private javax.swing.JLabel btnChangeImage;
+    private javax.swing.JLabel btnPost;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea txtDescripción;
-    private javax.swing.JTextField txtEstado;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblPetPhoto;
+    private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtRaza;
     // End of variables declaration//GEN-END:variables

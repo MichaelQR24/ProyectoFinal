@@ -8,7 +8,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import java.sql.PreparedStatement;
 /**
  *
  * @author omarc
@@ -29,11 +29,28 @@ public class Coneccion {
             } catch (SQLException ex) {
                 Logger.getLogger(Coneccion.class.getName()).log(Level.SEVERE, null, ex);
             }
-    }  catch (ClassNotFoundException ex) {
-        Logger.getLogger(Coneccion.class.getName()).log(Level.SEVERE, null, ex);
-}
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Coneccion.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return conexion;
     }
     
+    // Método para insertar datos de publicación de mascotas en la base de datos
+    public void insertarPublicacionMascota(String nombre, String raza, String descripcion, byte[] imagenBytes) {
+        try {
+            Connection conexion = getConnection();
+            String consulta = "INSERT INTO publicaciones_mascotas (nombre, raza, descripcion, imagen) VALUES (?, ?, ?, ?)";
+            try (PreparedStatement declaracionPreparada = conexion.prepareStatement(consulta)) {
+                declaracionPreparada.setString(1, nombre);
+                declaracionPreparada.setString(2, raza);
+                declaracionPreparada.setString(3, descripcion);
+                declaracionPreparada.setBytes(4, imagenBytes);
+
+                declaracionPreparada.executeUpdate();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Coneccion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
 
