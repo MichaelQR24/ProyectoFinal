@@ -186,7 +186,8 @@ public class FrameIngresar extends javax.swing.JFrame {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         FrameRegistrar frameregistrar = new FrameRegistrar();
-        frameregistrar.setVisible(true);
+        frameregistrar.setVisible(true);   
+        dispose();
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed

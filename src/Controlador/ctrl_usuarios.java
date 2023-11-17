@@ -38,7 +38,7 @@ public class ctrl_usuarios {
      private static final String Algoritmo="AES";
      String original_valor ="mi_clave_oculta";
      // Variables para el envio de correo
-    private static String remitente="wencad18@gmail.com";
+    private static String remitente="petfinder.servicios@gmail.com";
     private static String clave_remitente="qcwdavkankysrish";
     public static String destinatario;
     private String emailTo;

@@ -14,10 +14,11 @@ import java.util.logging.Logger;
  * @author omarc
  */
 public class Coneccion {
-    final String base_datos = "envio_correos";
-    final String user = "root";
-    String clave = "";
-    String url ="jdbc:mysql://localhost:3306/" + base_datos;
+    
+    final String base_datos = "envio_corres";
+    final String user = "omarreyna";
+    String clave = "omarreyna1234AE";
+    String url ="jdbc:mysql://db4free.net:3306/" + base_datos;
     Connection conexion;
     
     public Connection getConnection() {
