@@ -134,7 +134,7 @@ public class FrameIngresar extends javax.swing.JFrame {
                 lblOlvidarMouseClicked(evt);
             }
         });
-        jPanel1.add(lblOlvidar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, -1, -1));
+        jPanel1.add(lblOlvidar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, -1, -1));
 
         jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 150, 344, 304));
         jPanel1.getAccessibleContext().setAccessibleName("");

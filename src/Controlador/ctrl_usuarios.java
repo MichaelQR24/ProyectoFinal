@@ -125,7 +125,7 @@ public class ctrl_usuarios {
         return null;
     }
     public boolean Login(String user, String pwd) {
-          usuarios.setNombre(user);
+        usuarios.setNombre(user);
         String encriptacion = Encriptar(pwd);
         
         usuarios.setPassword(encriptacion);
