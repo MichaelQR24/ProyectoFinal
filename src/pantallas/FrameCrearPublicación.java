@@ -169,7 +169,9 @@ public class FrameCrearPublicación extends javax.swing.JFrame {
     }
     
     private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
-        BackPost(mascota);
+        FramePublicaciones menu = new FramePublicaciones();
+        menu.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnBackMouseClicked
 
     private void btnChangeImageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChangeImageMouseClicked
