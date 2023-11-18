@@ -35,10 +35,13 @@ public class FrameCrearPublicación extends javax.swing.JFrame {
      */
     public FrameCrearPublicación() {
         initComponents();
+        this.padre = padre;
+                this.setLocationRelativeTo(null);
+
     }
     public FrameCrearPublicación(FramePublicaciones padre, String tipo) {
         initComponents();
-        
+        this.padre = padre;
         agregarTextPrompt("Nombre",txtNombre);
         agregarTextPrompt("Raza",txtRaza);
         agregarTextPrompt("Descripción",txtDescripcion);
@@ -57,10 +60,10 @@ public class FrameCrearPublicación extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
         txtDescripcion = new javax.swing.JTextField();
         txtRaza = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
-        btnPost = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         btnBack = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -73,9 +76,23 @@ public class FrameCrearPublicación extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFrameCrearPublicación/Group 12 (3).png"))); // NOI18N
+        jButton1.setBorder(null);
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFrameCrearPublicación/Group 12 (3).png"))); // NOI18N
+        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFrameCrearPublicación/Group 22 (2).png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 530, -1, -1));
+
         txtDescripcion.setBackground(new java.awt.Color(235, 235, 235));
         txtDescripcion.setBorder(null);
-        jPanel1.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 375, 330, 30));
+        jPanel1.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 375, 330, 90));
 
         txtRaza.setBackground(new java.awt.Color(235, 235, 235));
         txtRaza.setBorder(null);
@@ -85,20 +102,11 @@ public class FrameCrearPublicación extends javax.swing.JFrame {
         txtNombre.setBorder(null);
         jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 274, 330, 30));
 
-        btnPost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFrameCrearPublicación/btnPost.png"))); // NOI18N
-        btnPost.setText("Publicar");
-        btnPost.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnPost.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnPostMouseClicked(evt);
-            }
-        });
-        jPanel1.add(btnPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 550, -1, -1));
-
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFrameCrearPublicación/TextField.png"))); // NOI18N
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 320, -1, -1));
 
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFrameCrearPublicación/btnBack.png"))); // NOI18N
+        btnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBackMouseClicked(evt);
@@ -113,12 +121,13 @@ public class FrameCrearPublicación extends javax.swing.JFrame {
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 270, -1, -1));
 
         btnChangeImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFrameCrearPublicación/CameraPhoto.png"))); // NOI18N
+        btnChangeImage.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnChangeImage.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnChangeImageMouseClicked(evt);
             }
         });
-        jPanel1.add(btnChangeImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(287, 200, -1, -1));
+        jPanel1.add(btnChangeImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, -1, -1));
 
         lblPetPhoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFrameCrearPublicación/PetPhoto.png"))); // NOI18N
         jPanel1.add(lblPetPhoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 75, -1, -1));
@@ -140,24 +149,6 @@ public class FrameCrearPublicación extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnPostMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPostMouseClicked
-        String nombre = txtNombre.getText();
-        String raza = txtRaza.getText();
-        String descripcion = txtDescripcion.getText();
-        if (nombre.isEmpty() || raza.isEmpty() || descripcion.isEmpty()) {
-            JOptionPane.showMessageDialog(this, 
-                    "Complete todo los casilleros");
-            return; // No continuamos si los campos están vacíos
-        }
-        // Obtener los bytes de la imagen
-        byte[] imagenBytes = this.imagenBytes;
-        Publicacion publicacionSelec = getDatos();
-        FramePublicaciones publicaciones = new FramePublicaciones(publicacionSelec);
-        publicaciones.setLocationRelativeTo(null);
-        publicaciones.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnPostMouseClicked
-
     private Publicacion getDatos() throws NumberFormatException {
         String nombre = txtNombre.getText();
         String raza = txtRaza.getText();
@@ -171,9 +162,13 @@ public class FrameCrearPublicación extends javax.swing.JFrame {
     }
     
     private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
-        FramePublicaciones menu = new FramePublicaciones();
-        menu.setVisible(true);
-        dispose();
+        
+        
+        this.padre.setLocationRelativeTo(this);
+        this.padre.setVisible(true);
+        this.setVisible(false);
+        
+        
     }//GEN-LAST:event_btnBackMouseClicked
 
     private void btnChangeImageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChangeImageMouseClicked
@@ -213,6 +208,24 @@ public class FrameCrearPublicación extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnChangeImageMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String nombre = txtNombre.getText();
+        String raza = txtRaza.getText();
+        String descripcion = txtDescripcion.getText();
+        if (nombre.isEmpty() || raza.isEmpty() || descripcion.isEmpty()) {
+            JOptionPane.showMessageDialog(this, 
+                    "Complete todo los casilleros");
+            return; // No continuamos si los campos están vacíos
+        }
+        // Obtener los bytes de la imagen
+        byte[] imagenBytes = this.imagenBytes;
+        Publicacion publicacionSelec = getDatos();
+        FramePublicaciones publicaciones = new FramePublicaciones(publicacionSelec);
+        publicaciones.setLocationRelativeTo(null);
+        publicaciones.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
  
     private static void guardarImagenEnBD(byte[] imagenBytes) throws SQLException {
         String url = "xd";
@@ -273,7 +286,7 @@ public class FrameCrearPublicación extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnBack;
     private javax.swing.JLabel btnChangeImage;
-    private javax.swing.JLabel btnPost;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

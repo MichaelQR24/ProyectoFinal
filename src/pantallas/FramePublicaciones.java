@@ -28,6 +28,8 @@ public class FramePublicaciones extends javax.swing.JFrame {
      */
     public FramePublicaciones() {
         initComponents();
+                this.setLocationRelativeTo(null);
+
     }
 
     public FramePublicaciones(Publicacion publicacion) {
@@ -52,8 +54,6 @@ public class FramePublicaciones extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         lstPublicaciones = new javax.swing.JList<>();
         btnVer = new javax.swing.JButton();
-        btnMisPublicaciones = new javax.swing.JLabel();
-        lblUsuario = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
         btnCrearPublicacion = new javax.swing.JLabel();
         btnMascotasPerdidas = new javax.swing.JLabel();
@@ -74,37 +74,25 @@ public class FramePublicaciones extends javax.swing.JFrame {
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 590, 470));
 
-        btnVer.setText("Ver más");
+        btnVer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFramePublicaciones/Group 24.png"))); // NOI18N
+        btnVer.setBorder(null);
+        btnVer.setBorderPainted(false);
+        btnVer.setContentAreaFilled(false);
+        btnVer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVer.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFramePublicaciones/Group 24.png"))); // NOI18N
+        btnVer.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFramePublicaciones/Group 23.png"))); // NOI18N
         btnVer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVerActionPerformed(evt);
             }
         });
-        jPanel2.add(btnVer, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 520, -1, -1));
+        jPanel2.add(btnVer, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 510, -1, -1));
 
         spPublicacion.setViewportView(jPanel2);
 
         jPanel1.add(spPublicacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(216, 72, 644, 568));
 
-        btnMisPublicaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFramePublicaciones/btnMisPublicaciones.png"))); // NOI18N
-        btnMisPublicaciones.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnMisPublicacionesMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnMisPublicacionesMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnMisPublicacionesMouseReleased(evt);
-            }
-        });
-        jPanel1.add(btnMisPublicaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 355, -1, -1));
-
-        lblUsuario.setText("Usuario");
-        jPanel1.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 180, -1, -1));
-
         lblTitulo.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Mascotas Perdidas");
         lblTitulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -122,9 +110,10 @@ public class FramePublicaciones extends javax.swing.JFrame {
                 btnCrearPublicacionMouseReleased(evt);
             }
         });
-        jPanel1.add(btnCrearPublicacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 407, -1, -1));
+        jPanel1.add(btnCrearPublicacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, -1, -1));
 
         btnMascotasPerdidas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFramePublicaciones/btnMascotasPerdidas.png"))); // NOI18N
+        btnMascotasPerdidas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMascotasPerdidas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnMascotasPerdidasMouseClicked(evt);
@@ -136,9 +125,10 @@ public class FramePublicaciones extends javax.swing.JFrame {
                 btnMascotasPerdidasMouseReleased(evt);
             }
         });
-        jPanel1.add(btnMascotasPerdidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 303, -1, -1));
+        jPanel1.add(btnMascotasPerdidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, -1, -1));
 
         btnCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFramePublicaciones/btnCerrarSesion.png"))); // NOI18N
+        btnCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCerrarSesionMouseClicked(evt);
@@ -153,6 +143,7 @@ public class FramePublicaciones extends javax.swing.JFrame {
         jPanel1.add(btnCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, -1, -1));
 
         btnAdopcion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFramePublicaciones/btnAdopcion.png"))); // NOI18N
+        btnAdopcion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAdopcion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAdopcionMouseClicked(evt);
@@ -164,10 +155,10 @@ public class FramePublicaciones extends javax.swing.JFrame {
                 btnAdopcionMouseReleased(evt);
             }
         });
-        jPanel1.add(btnAdopcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 251, -1, -1));
+        jPanel1.add(btnAdopcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, -1, -1));
 
-        lblLogoPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFramePublicaciones/LogoPerfil.png"))); // NOI18N
-        jPanel1.add(lblLogoPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 33, -1, -1));
+        lblLogoPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFramePublicaciones/image 14.png"))); // NOI18N
+        jPanel1.add(lblLogoPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFramePublicaciones/FramePublicaciones.png"))); // NOI18N
         jPanel1.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -220,7 +211,7 @@ public class FramePublicaciones extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdopcionMouseReleased
 
     private void btnMascotasPerdidasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMascotasPerdidasMouseClicked
-        // TODO add your handling code here:
+        abrirPantalla("PERDIDO");
     }//GEN-LAST:event_btnMascotasPerdidasMouseClicked
 
     private void btnMascotasPerdidasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMascotasPerdidasMousePressed
@@ -237,40 +228,17 @@ public class FramePublicaciones extends javax.swing.JFrame {
         );
     }//GEN-LAST:event_btnMascotasPerdidasMouseReleased
 
-    private void btnMisPublicacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMisPublicacionesMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnMisPublicacionesMouseClicked
-
-    private void btnMisPublicacionesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMisPublicacionesMousePressed
-        btnMisPublicaciones.setIcon(new javax.swing.ImageIcon(
-                getClass().getResource(
-                        "/ImagenesFramePublicaciones/btnMisPublicaciones2.png"))
-        );
-    }//GEN-LAST:event_btnMisPublicacionesMousePressed
-
-    private void btnMisPublicacionesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMisPublicacionesMouseReleased
-        btnMisPublicaciones.setIcon(new javax.swing.ImageIcon(
-                getClass().getResource(
-                        "/ImagenesFramePublicaciones/btnMisPublicaciones.png"))
-        );
-    }//GEN-LAST:event_btnMisPublicacionesMouseReleased
-
     private void btnCrearPublicacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearPublicacionMouseClicked
-        abrirPantalla("PERDIDO");
+        
     }//GEN-LAST:event_btnCrearPublicacionMouseClicked
 
     private void btnCrearPublicacionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearPublicacionMousePressed
-        btnCrearPublicacion.setIcon(new javax.swing.ImageIcon(
-                getClass().getResource(
-                        "/ImagenesFramePublicaciones/btnCrearPublicacion2.png"))
-        );
+      
     }//GEN-LAST:event_btnCrearPublicacionMousePressed
 
     private void btnCrearPublicacionMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearPublicacionMouseReleased
-        btnCrearPublicacion.setIcon(new javax.swing.ImageIcon(
-                getClass().getResource(
-                        "/ImagenesFramePublicaciones/btnCrearPublicacion.png"))
-        );
+        
+        
     }//GEN-LAST:event_btnCrearPublicacionMouseReleased
 
     private void btnCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarSesionMouseClicked
@@ -349,7 +317,6 @@ public class FramePublicaciones extends javax.swing.JFrame {
     private javax.swing.JLabel btnCerrarSesion;
     private javax.swing.JLabel btnCrearPublicacion;
     private javax.swing.JLabel btnMascotasPerdidas;
-    private javax.swing.JLabel btnMisPublicaciones;
     private javax.swing.JButton btnVer;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -357,7 +324,6 @@ public class FramePublicaciones extends javax.swing.JFrame {
     private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblLogoPerfil;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JLabel lblUsuario;
     private javax.swing.JList<String> lstPublicaciones;
     private javax.swing.JScrollPane spPublicacion;
     // End of variables declaration//GEN-END:variables

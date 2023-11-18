@@ -50,9 +50,12 @@ public class FrameIngresar extends javax.swing.JFrame {
         lblOlvidar = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -129,6 +132,7 @@ public class FrameIngresar extends javax.swing.JFrame {
 
         lblOlvidar.setForeground(new java.awt.Color(241, 141, 24));
         lblOlvidar.setText("¿Haz olvidado la contraseña?");
+        lblOlvidar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblOlvidar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblOlvidarMouseClicked(evt);
@@ -145,6 +149,19 @@ public class FrameIngresar extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFrameingresar/Encuentra a tu mascota perdida o dale un hogar a aquellas que lo necesitan..png"))); // NOI18N
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 350, 90));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFrameingresar/Group 17.png"))); // NOI18N
+        jButton1.setBorder(null);
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFrameingresar/Group 17.png"))); // NOI18N
+        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFrameingresar/Group 18.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 10, -1, -1));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFrameingresar/fondo1.png"))); // NOI18N
         jPanel3.add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -211,6 +228,10 @@ public class FrameIngresar extends javax.swing.JFrame {
        dispose();
     }//GEN-LAST:event_lblOlvidarMouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -253,6 +274,7 @@ public class FrameIngresar extends javax.swing.JFrame {
     private javax.swing.JButton btnIniciar;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JLabel fondo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

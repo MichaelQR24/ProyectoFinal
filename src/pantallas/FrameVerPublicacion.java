@@ -22,6 +22,8 @@ public class FrameVerPublicacion extends javax.swing.JFrame {
      */
     public FrameVerPublicacion() {
         initComponents();
+                this.setLocationRelativeTo(null);
+
     }
     
     public FrameVerPublicacion(Publicacion publicacionSelec) {
@@ -40,6 +42,7 @@ public class FrameVerPublicacion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         lblPhoto = new javax.swing.JLabel();
@@ -49,20 +52,31 @@ public class FrameVerPublicacion extends javax.swing.JFrame {
         lblDescripcion = new javax.swing.JLabel();
         btnBack = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+
+        jLabel4.setText("jLabel4");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBackground(new java.awt.Color(204, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel3.add(lblPhoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 180, 160));
 
+        lblTipo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblTipo.setText("SE BUSCA:");
-        jPanel3.add(lblTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, -1, -1));
-        jPanel3.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, 260, 20));
-        jPanel3.add(lblRaza, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 260, 20));
+        jPanel3.add(lblTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, -1, -1));
+
+        lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jPanel3.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 250, 20));
+
+        lblRaza.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jPanel3.add(lblRaza, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 260, 20));
         jPanel3.add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 510, 110));
 
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesFrameCrearPublicación/btnBack.png"))); // NOI18N
+        btnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBackMouseClicked(evt);
@@ -70,8 +84,21 @@ public class FrameVerPublicacion extends javax.swing.JFrame {
         });
         jPanel3.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("ESTADO:");
-        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, -1, -1));
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setText("Nombre:");
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setText("Raza:");
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel5.setText("Descripción:");
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, -1, -1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -181,6 +208,10 @@ public class FrameVerPublicacion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnBack;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblDescripcion;

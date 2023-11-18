@@ -19,6 +19,8 @@ public class Recuperar extends javax.swing.JFrame {
      */
     public Recuperar() {
         initComponents();
+                this.setLocationRelativeTo(null);
+
     }
 
     /**
