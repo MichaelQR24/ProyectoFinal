@@ -5,6 +5,7 @@
 package pantallas;
 
 import Entidades.Mascota;
+import Entidades.Publicacion;
 import java.awt.Image;
 import java.io.File;
 import java.io.FileInputStream;
@@ -27,6 +28,7 @@ import javax.swing.text.JTextComponent;
 public class FrameCrearPublicación extends javax.swing.JFrame {
 
     private FramePublicaciones padre;
+    public String tipo;
     private byte[] imagenBytes;
     /**
      * Creates new form FrameCrearPublicación
@@ -34,12 +36,14 @@ public class FrameCrearPublicación extends javax.swing.JFrame {
     public FrameCrearPublicación() {
         initComponents();
     }
-    public FrameCrearPublicación(FramePublicaciones padre) {
+    public FrameCrearPublicación(FramePublicaciones padre, String tipo) {
         initComponents();
         
         agregarTextPrompt("Nombre",txtNombre);
         agregarTextPrompt("Raza",txtRaza);
         agregarTextPrompt("Descripción",txtDescripcion);
+        
+        this.tipo = tipo;
        
     }
 
@@ -147,25 +151,23 @@ public class FrameCrearPublicación extends javax.swing.JFrame {
         }
         // Obtener los bytes de la imagen
         byte[] imagenBytes = this.imagenBytes;
-        Mascota mascota = getMascota();
-        BackPost(mascota);
+        Publicacion publicacionSelec = getDatos();
+        FramePublicaciones publicaciones = new FramePublicaciones(publicacionSelec);
+        publicaciones.setLocationRelativeTo(null);
+        publicaciones.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnPostMouseClicked
 
-    private Mascota getMascota() throws NumberFormatException {
+    private Publicacion getDatos() throws NumberFormatException {
         String nombre = txtNombre.getText();
         String raza = txtRaza.getText();
         String descripcion = txtDescripcion.getText();
         
         Mascota mascota =
                 new Mascota(nombre, raza, descripcion, imagenBytes);
-        return mascota;
-    }
-    
-    private void BackPost(Mascota mascota) {
-        FramePublicaciones pantalla = new FramePublicaciones(this, mascota);
-        pantalla.setLocationRelativeTo(this);
-        pantalla.setVisible(true);
-        this.setVisible(false);
+        
+        Publicacion publicacion = new Publicacion(tipo, mascota);
+        return publicacion;
     }
     
     private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
@@ -257,6 +259,7 @@ public class FrameCrearPublicación extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FrameCrearPublicación.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

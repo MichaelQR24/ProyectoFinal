@@ -113,6 +113,11 @@ public class FrameEditarPerfil extends javax.swing.JFrame {
         btnCancelar.setBorderPainted(false);
         btnCancelar.setContentAreaFilled(false);
         btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCancelarMouseClicked(evt);
+            }
+        });
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
@@ -212,6 +217,11 @@ public class FrameEditarPerfil extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
+        FramePublicaciones menu =new FramePublicaciones();
+        menu.setVisible(true);
+    }//GEN-LAST:event_btnCancelarMouseClicked
 
     /**
      * @param args the command line arguments

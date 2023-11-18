@@ -5,9 +5,12 @@
 package pantallas;
 
 import Entidades.Mascota;
+import Entidades.Publicacion;
 import java.awt.Image;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
@@ -17,11 +20,9 @@ import javax.swing.JPanel;
  */
 public class FramePublicaciones extends javax.swing.JFrame {
 
-    private FrameCrearPublicación hijo;
-    private Mascota mascota;
-    private List<JPanel> panelesPublicacion = new ArrayList<>();
-    private JPanel panelPublicacion;
-
+    public Publicacion publicacion;
+    public Publicacion publicacionSelec;
+    public static List<Publicacion> publicaciones = new ArrayList<Publicacion>();
     /**
      * Creates new form FramePublicaciones
      */
@@ -29,11 +30,11 @@ public class FramePublicaciones extends javax.swing.JFrame {
         initComponents();
     }
 
-    public FramePublicaciones(FrameCrearPublicación hijo, Mascota mascota) {
+    public FramePublicaciones(Publicacion publicacion) {
         initComponents();
-        this.hijo = hijo;
-        this.mascota = mascota;
-        agregarMascota(mascota);
+        this.publicacion = publicacion;
+        agregarPublicacion(publicacion);
+        llenarLista();
     }
 
     /**
@@ -48,12 +49,9 @@ public class FramePublicaciones extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         spPublicacion = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        lblPhoto = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        lblNombre = new javax.swing.JLabel();
-        lblRaza = new javax.swing.JLabel();
-        lblDescripcion = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        lstPublicaciones = new javax.swing.JList<>();
+        btnVer = new javax.swing.JButton();
         btnMisPublicaciones = new javax.swing.JLabel();
         lblUsuario = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
@@ -71,17 +69,18 @@ public class FramePublicaciones extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel3.add(lblPhoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 20, 211, 174));
+        lstPublicaciones.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jScrollPane1.setViewportView(lstPublicaciones);
 
-        jLabel2.setText("SE BUSCA:");
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, -1, -1));
-        jPanel3.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, 260, 20));
-        jPanel3.add(lblRaza, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 260, 20));
-        jPanel3.add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 510, 110));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 590, 470));
 
-        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 40, 555, 360));
+        btnVer.setText("Ver más");
+        btnVer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnVer, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 520, -1, -1));
 
         spPublicacion.setViewportView(jPanel2);
 
@@ -187,38 +186,23 @@ public class FramePublicaciones extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void agregarMascota(Mascota mascota) {
-        lblNombre.setText(mascota.getNombre());
-        lblRaza.setText(mascota.getRaza());
-        lblDescripcion.setText(mascota.getDescripcion());
-
-        // Mostrar la imagen en un JLabel y ajustar al tamaño del JLabel
-        if (mascota.getImagenBytes() != null) {
-            try {
-                // Obtener la imagen original
-                ImageIcon iconoOriginal = new ImageIcon(mascota.getImagenBytes());
-                Image imagenOriginal = iconoOriginal.getImage();
-
-                // Obtener el tamaño del JLabel
-                int anchoLabel = lblPhoto.getWidth();
-                int altoLabel = lblPhoto.getHeight();
-
-                // Escalar la imagen al tamaño del JLabel
-                Image imagenEscalada = imagenOriginal.getScaledInstance(anchoLabel, altoLabel, Image.SCALE_SMOOTH);
-
-                // Crear un nuevo ImageIcon con la imagen escalada
-                ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
-
-                // Establecer el nuevo icono en el JLabel
-                lblPhoto.setIcon(iconoEscalado);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+    public void agregarPublicacion(Publicacion publicacion){
+        publicaciones.add(publicacion);
+    }
+    
+    public void llenarLista(){
+        DefaultListModel modelo =new DefaultListModel();        
+        lstPublicaciones.setModel(modelo); 
+        modelo.removeAllElements();
+        for (int i = 0; i < publicaciones.size(); i++) {
+            modelo.addElement(publicaciones.get(i).getTipo()+"          "
+            +publicaciones.get(i).getMascota().getNombre()+"          "
+            +publicaciones.get(i).getMascota().getRaza());
         }
     }
     
     private void btnAdopcionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdopcionMouseClicked
-        abrirPantalla();
+        abrirPantalla("ADOPCIÓN");
     }//GEN-LAST:event_btnAdopcionMouseClicked
 
     private void btnAdopcionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdopcionMousePressed
@@ -272,7 +256,7 @@ public class FramePublicaciones extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMisPublicacionesMouseReleased
 
     private void btnCrearPublicacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearPublicacionMouseClicked
-        abrirPantalla();
+        abrirPantalla("PERDIDO");
     }//GEN-LAST:event_btnCrearPublicacionMouseClicked
 
     private void btnCrearPublicacionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearPublicacionMousePressed
@@ -290,6 +274,8 @@ public class FramePublicaciones extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCrearPublicacionMouseReleased
 
     private void btnCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarSesionMouseClicked
+        FrameIngresar login = new FrameIngresar();
+        login.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCerrarSesionMouseClicked
 
@@ -307,9 +293,17 @@ public class FramePublicaciones extends javax.swing.JFrame {
         );
     }//GEN-LAST:event_btnCerrarSesionMouseReleased
 
-    private void abrirPantalla() {
-        FrameCrearPublicación pantalla = new FrameCrearPublicación(this);
-        pantalla.setLocationRelativeTo(this);
+    private void btnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerActionPerformed
+        int index = lstPublicaciones.getSelectedIndex();
+        publicacionSelec = publicaciones.get(index);
+        FrameVerPublicacion ver = new FrameVerPublicacion(publicacionSelec);
+        ver.setLocationRelativeTo(null);
+        ver.setVisible(true);
+    }//GEN-LAST:event_btnVerActionPerformed
+
+    private void abrirPantalla(String tipo) {
+        FrameCrearPublicación pantalla = new FrameCrearPublicación(this, tipo);
+        pantalla.setLocationRelativeTo(null);
         pantalla.setVisible(true);
         this.setVisible(false);
     }
@@ -340,6 +334,7 @@ public class FramePublicaciones extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(FramePublicaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -355,18 +350,15 @@ public class FramePublicaciones extends javax.swing.JFrame {
     private javax.swing.JLabel btnCrearPublicacion;
     private javax.swing.JLabel btnMascotasPerdidas;
     private javax.swing.JLabel btnMisPublicaciones;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton btnVer;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel lblDescripcion;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblLogoPerfil;
-    private javax.swing.JLabel lblNombre;
-    private javax.swing.JLabel lblPhoto;
-    private javax.swing.JLabel lblRaza;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblUsuario;
+    private javax.swing.JList<String> lstPublicaciones;
     private javax.swing.JScrollPane spPublicacion;
     // End of variables declaration//GEN-END:variables
 }
